@@ -22,7 +22,7 @@ def train():
     d_model = 128
     n_heads = 4
     n_layers = 2
-    seq_len = 32
+    seq_len = 64
     batch_size = 4
     epochs = 100
     learning_rate = 1e-3
@@ -86,7 +86,7 @@ def train():
 
     print("\n--- Generating Text After Training ---")
     prompt = "Building a Large Language Model"
-    sample_output = generate_text(model, tokenizer, prompt=prompt, max_new_tokens=50, device=device)
+    sample_output = generate_text(model, tokenizer, prompt=prompt, max_new_tokens=50, temperature=0.1, device=device)
     print(f"Prompt : '{prompt}'")
     print(f"Output : '{sample_output}'")
 

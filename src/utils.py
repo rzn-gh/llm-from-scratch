@@ -31,11 +31,8 @@ def generate_text(model: nn.Module, tokenizer: Tokenizer, prompt: str,
         # Focus onl^on the logits of the last token position 
         logits = logits[:, -1, :] / temperature
 
-        # Convert logits to probabilities
-        probs = F.softmax(logits, dim=-1)
-
-        # Sample next token from probability distribution 
-        next_token = torch.multinomial(probs, num_samples=1)
+        # Use Greedy Decoding (always pick highest probability token): 
+        next_token = torch.argmax(logits, dim=1, keepdim=True)
 
         # Append sampled token to sequence
         input_ids = torch.cat((input_ids, next_token), dim=1)

@@ -49,7 +49,7 @@ def save_checkpoint(model: nn.Module, optimizer: torch.optim.Optimizer,
     """
     Saves model weights and optimizer state to disk.
     """
-    Path(filepath).parent.mkdir(parents=True, exit_ok=True)
+    Path(filepath).parent.mkdir(parents=True, exist_ok=True)
     checkpoint = {
         "model_state_dict": model.state_dict(),
         "optimizer_state_dict": optimizer.state_dict(),
